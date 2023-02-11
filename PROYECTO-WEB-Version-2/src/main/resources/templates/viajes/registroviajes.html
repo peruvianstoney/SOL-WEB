@@ -15,11 +15,30 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             function Agregar1() {
- 
-                
-                    var cliente = document.getElementById("cliente").value;
-                    console.log("cliente: " + cliente);
-                 
+                event.preventDefault();
+
+                Swal.fire({
+                    title: '¿Estas seguro de agregar un nuevo viaje?',
+                    text: "Se podrá modificar en el futuro",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                                'Agregado!',
+                                'El viaje ha sido agregado.',
+                                'Exito'
+                                ).then((result) => {
+                            if (result.isConfirmed) {
+                                const formulario = document.getElementById('agregar');
+                                formulario.submit();
+                            }
+                        });
+                    }
+                });
             }
         </script>
 
